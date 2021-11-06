@@ -6,10 +6,10 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["go-head.client.api/go-head.client.api.csproj", "go-head.client.api/"]
-RUN dotnet restore "go-head.client.api/go-head.client.api.csproj"
+COPY ["go-head.client.api.csproj", ""]
+RUN dotnet restore "go-head.client.api.csproj"
 COPY . .
-WORKDIR "/src/go-head.client.api"
+WORKDIR "/src"
 RUN dotnet build "go-head.client.api.csproj" -c Release -o /app/build
 
 FROM build AS publish
